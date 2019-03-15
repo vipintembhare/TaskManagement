@@ -32,7 +32,6 @@ public class Project implements Serializable,Cloneable{
 	//getters and setters
 	@Id
 	@Column(name="PROJECT_ID")
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	public String getProjectId() {
 		return projectId;
 	}

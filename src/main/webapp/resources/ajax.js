@@ -1,13 +1,9 @@
 $(document).ready(
 		function() {
 			
-			$(function() {
-			  $(".date").datepicker({
-			    dateFormat: 'dd-mm-yyyy',
-			    changeMonth: true,
-			    changeYear: true
-			  });
-			});
+
+			
+			
 			var projects = '<option value="">----Select Project----</option>'
 			var options=$(project).html();
 			options=projects+(options);
@@ -63,8 +59,7 @@ $(document).ready(
                     }else{
                     var html = '<option value="">----Select Employees----</option>';
                     var len = data.length;
-                    console.log('Call was for Employees);
-                                prompt('Call was for Employees');
+                              
                     for (var i = 0; i < len; i++) {
                         html += '<option value="' + data[i].empId + '">' + data[i].empName + '   '+data[i].empId +'</option>';
                     }

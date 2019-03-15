@@ -2,6 +2,10 @@ package com.mindtree.yorbit.taskmanagement.config;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
+
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -17,4 +21,8 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	  public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
 	      converters.add(new TaskConverter());
 	  }
+	
+	
+
+
 }

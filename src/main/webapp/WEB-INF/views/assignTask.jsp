@@ -10,7 +10,7 @@
     <body>
     <div id="valueHolderId" hidden="true"><%=request.getContextPath()%>/assignTasks/getEmployees</div>
       <h3>Assign Tasks</h3>
-        <form:form method="POST" modelAttribute="task" enctype='application/json'>
+        <form:form method="POST" modelAttribute="task" enctype='application/json' action="addTask">
         <form:errors path="*" cssClass="errorblock" element="div" />
              <table>
                 <tr>
@@ -26,12 +26,12 @@
                 </tr>
                 <tr>
                     <td><form:label path="startDate">Start Date of Task [dd-mm-yyyy]</form:label></td>
-                    <td><form:input type="date" path="startDate" class="date"/></td>
+                    <td><form:input type="date" path="startDate" id="startDate" class="date" /></td>
                     <td><form:errors path="startDate" cssClass="error" /></td>
                 </tr>
                 <tr>
                     <td><form:label path="endDate">Due Date of Task [dd-mm-yyyy]</form:label></td>
-                    <td><form:input type="date" path="endDate" class="date"/></td>
+                    <td><form:input type="date" path="endDate" id="endDate" class="date"/></td>
                     <td><form:errors path="endDate" cssClass="error" /></td>
                 </tr>
                  <tr>

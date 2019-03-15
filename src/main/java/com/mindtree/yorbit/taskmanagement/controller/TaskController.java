@@ -70,11 +70,11 @@ public class TaskController{
 		 return "index";
 	}
 	 
-	@RequestMapping( method=RequestMethod.POST, params = {"add"}) 
-	public String onSubmit(@Validated @ModelAttribute("task") Task task , BindingResult result){
+	@RequestMapping( value="/task/addTask",method=RequestMethod.POST) 
+	public String onSubmit(@Validated @ModelAttribute("task") Task task , BindingResult result,RedirectAttributes attr){
 		if (result.hasErrors()) {
 			logger.info("I am in here---------------");
-			return "assignTask";
+					return createRedirectViewPath("assignTask","redirect:");
         }
 		
 		this.taskService.addTask(task);
@@ -83,7 +83,7 @@ public class TaskController{
 		//return createRedirectViewPath("assignTask","redirect:");
 		logger.info("There******************");
 
-		return "assignTask";
+		return createRedirectViewPath("assignTask","redirect:");//"task/assignTask";
 	}
 	
 		
