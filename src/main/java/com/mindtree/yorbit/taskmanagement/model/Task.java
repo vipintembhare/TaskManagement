@@ -2,13 +2,9 @@
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,16 +14,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.mindtree.yorbit.taskmanagement.converters.ProjectIdToProjectConverter;
 
 @Entity
 @Table(name="TASK")
@@ -90,8 +84,8 @@ public class Task implements Serializable,Cloneable{
 		this.project = project;
 	}
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.DATE)
+	  @JsonFormat(pattern = "dd-MM-yyyy")
+@Temporal(TemporalType.DATE)
 	@Column(name="STARTDATE")
 	public Date getStartDate() {
 		return startDate;
@@ -99,7 +93,7 @@ public class Task implements Serializable,Cloneable{
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	  @JsonFormat(pattern = "dd-MM-yyyy")
 	@Temporal(TemporalType.DATE)
 	@Column(name="ENDDATE")
 	public Date getEndDate() {

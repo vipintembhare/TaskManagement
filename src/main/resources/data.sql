@@ -1,64 +1,23 @@
- drop table DEPARTMENT;
-CREATE TABLE DEPARTMENT (
-  DEPT_ID decimal(2,0) NOT NULL,
-  DEPT_NAME varchar(14) default NULL,
-  PRIMARY KEY (DEPT_ID)
-)ENGINE=INNODB;
-
-DROP table PROJECT;
-CREATE TABLE PROJECT (
-  PROJECT_ID VARCHAR(30) NOT NULL,
-  PROJECT_NAME varchar(14) default NULL,
-  PROJECT_DESC varchar(150) default NULL,
-  DEPT_ID decimal(2,0),
-  PRIMARY KEY (PROJECT_ID),
-  CONSTRAINT FOREIGN KEY FK_DEPT(DEPT_ID) REFERENCES DEPARTMENT(DEPT_ID)
-)ENGINE=INNODB;
-
-DROP table EMPLOYEE;
-CREATE TABLE EMPLOYEE (
-  EMP_ID VARCHAR(30) NOT NULL,
-  EMP_NAME varchar(30) default NULL,
-  DESIGNATION varchar(20) default NULL,
-  EMAIL varchar(35) default NULL,
-  MANAGER_ID decimal(2,0),
-  DATE_OF_JOINING DATE,
-  DEPT_ID decimal(2,0),
-  PROJECT_ID VARCHAR(30),
-  PRIMARY KEY (EMP_ID),
-  CONSTRAINT FOREIGN KEY FK_DEPT(DEPT_ID) REFERENCES DEPARTMENT(DEPT_ID),
-  CONSTRAINT FOREIGN KEY FK_PROJECT(PROJECT_ID) REFERENCES PROJECT(PROJECT_ID)
-)ENGINE=INNODB;
-
-DROP table TASK;
-CREATE TABLE TASK (
-  TASK_ID INT NOT NULL AUTO_INCREMENT,
-  TASK_NAME varchar(30) default NULL,
-  TASK_DESC varchar(150) default NULL,
-  PRIORITY SMALLINT(2),
-  START_DATE DATE,
-  END_DATE DATE,
-  EMP_ID VARCHAR(30),
-  PROJECT_ID varchar(30),
-  PRIMARY KEY (TASK_ID),
-  CONSTRAINT FOREIGN KEY FK_EMP(EMP_ID) REFERENCES EMPLOYEE(EMP_ID),
-  CONSTRAINT FOREIGN KEY FK_PROJECT(PROJECT_ID) REFERENCES PROJECT(PROJECT_ID)
-)ENGINE=INNODB;
-
-insert into EMPLOYEE values ('M1039999','Vipin Tembhare','Module Lead','vipintembhare@gmail.com','2','02-02-02',2,'D+H');
-insert into EMPLOYEE values ('M1039998','Rahul Girish','Module Lead','vipintembhare@gmail.com','2','02-02-02',2,'D+H');
-insert into EMPLOYEE values ('M1039996','Lovelyn Sharma','Module Lead','vipintembhare@gmail.com','2','02-02-02',2,'BBC');
-insert into EMPLOYEE values ('M1039997','Akshay Tembhare','Module Lead','vipintembhare@gmail.com','2','02-02-02',2,'D+H');
-insert into EMPLOYEE values ('M1039995','Raju Tembhare','Module Lead','vipintembhare@gmail.com','2','02-02-02',2,'BBC');
-insert into EMPLOYEE values ('M1039994','Maehta Tembhare','Module Lead','vipintembhare@gmail.com','2','02-02-02',2,'Equifax');
-insert into EMPLOYEE values ('M1039993','Pankaj Tembhare','Module Lead','vipintembhare@gmail.com','2','02-02-02',2,'D+H');
-
-
-Insert into TASK values (1,'Deadlock resolution','Deadlock resolution',1,'02-02-02','02-02-02','M1039999','BBC');
-Insert into TASK values (2,'TimeSheet','TimeSheet',1,'02-02-02','02-02-02','M1039998','BBC');
-Insert into TASK values (3,'TimeSheet','TimeSheet',1,'02-02-02','02-02-02','M1039997','BBC');
-Insert into TASK values (4,'API Generation','API Generation',1,'02-02-02','02-02-02','M1039997','D+H');
-Insert into TASK values (5,'Deadlock resolution2','Deadlock resolution',1,'02-02-02','02-02-02','M1039999','Equifax');
-Insert into TASK values (8,'TimeSheet2','TimeSheet',1,'02-02-02','02-02-02','M1039998','D+H');
-Insert into TASK values (6,'TimeSheet2','TimeSheet',1,'02-02-02','02-02-02','M1039997','BBC');
-Insert into TASK values (7,'API Generation2','API Generation',1,'02-02-02','02-02-02','M1039997','D+H');
+ 
+insert into department values (1,'IT');
+insert into department values (2,'HR');
+insert into project values('D+H','D+H','D+H',1);
+insert into project values('Equifax','Equifax','Equifax',1);
+insert into project values('Adidas','Adidas','Adidas',1);
+insert into project values('BBC','BBC','BBC',2);
+insert into employee values ('M1039999','2002-02-02','Module Lead','vipintembhare@gmail.com','Vipin Tembhare','2',2,'D+H');
+insert into employee values ('M1039998','2001-02-02','Team Lead','vipintembhare@gmail.com','Lavkar James','2',2,'BBC');
+insert into employee values ('M1039997','2003-02-02','Tech Lead','vipintembhare@gmail.com','Vipin Tembhare','2',2,'Adidas');
+insert into employee values ('M1039992','2004-02-02','Lead','vipintembhare@gmail.com','Vipin Tembhare','2',2,'D+H');
+insert into employee values ('M1039991','2005-02-02','Lead','vipintembhare@gmail.com','Vipin Tembhare','2',2,'D+H');
+insert into employee values ('M1039993','2006-02-02','Module Lead','vipintembhare@gmail.com','Varun Patil','2',2,'D+H');
+insert into employee values ('M1039994','2007-02-02','Module Lead','vipintembhare@gmail.com','Rajiv Mishra','2',2,'D+H');
+insert into employee values ('M1039995','2008-02-02','Module Lead','vipintembhare@gmail.com','Vipin Tembhare','2',2,'Equifax');
+insert into task values ('1','2004-09-25','2005-10-20','Push Notification','D+H');
+insert into emp_task values (1,'M1039994');
+insert into task values ('2','2008-09-17','2012-10-20','Help Screen','BBC');
+insert into emp_task values (2,'M1039998');
+insert into task values ('3','2003-09-20','2006-10-21','Graphics Slicing','Adidas');
+insert into emp_task values (3,'M1039997');
+insert into task values ('4','2001-09-20','2005-11-19','Narrative Codes','Equifax');
+insert into emp_task values (4,'M1039995');
