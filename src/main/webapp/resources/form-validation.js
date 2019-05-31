@@ -16,7 +16,8 @@ $(function() {
         required: true
       },
       endDate: {
-        required: true
+        required: true,
+        greaterThan: "#startDate"
       },
       project:{valueNotEquals:"default" }
     },
@@ -25,7 +26,8 @@ $(function() {
     	taskDesc: "Please enter your task description",
       startDate: "Please enter start date",
       endDate: {
-        required: "Please enter due date"
+        required: "Please enter due date",
+        greaterThan: "End Date should be greater than StartDate"
       },
       assignedResources: {required: "Please select resources",
     	  valueNotEquals: "Please select an project"},
@@ -44,3 +46,14 @@ $(function() {
 $.validator.addMethod("valueNotEquals", function(value, element, arg){
  return arg !== value;
 }, "Value must not equal arg.");
+
+$.validator.addMethod("greaterThan", 
+function(value, element, params) {
+
+    if (!/Invalid|NaN/.test(new Date(value))) {
+        return new Date(value) > new Date($(params).val());
+    }
+
+    return isNaN(value) && isNaN($(params).val()) 
+        || (Number(value) > Number($(params).val())); 
+},'Must be greater than {0}.');

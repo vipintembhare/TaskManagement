@@ -39,8 +39,8 @@ public class TaskController{
 	private TaskService taskService;
 	@Autowired
 	private MessageSource messageSource;
-	@Autowired
-	private TaskValidator taskValidator;
+	//@Autowired
+//	private TaskValidator taskValidator;
 	@InitBinder
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
 	    binder.registerCustomEditor(Project.class, "project", new PropertyEditorSupport() {
@@ -141,17 +141,7 @@ public class TaskController{
 	    List<Employee> getEmployeeList(@RequestParam(value = "projectId", required = true) String projectId)  {
 		return taskService.listEmployees(projectId);
 	}
-	
-	private void addFeedbackMessage(RedirectAttributes attributes, String messageCode, Object... messageParameters) {
-		        String localizedFeedbackMessage = getMessage(messageCode, messageParameters);
-		        attributes.addFlashAttribute("feedbackMessage", localizedFeedbackMessage);
-    }
-		 
-	private String getMessage(String messageCode, Object... messageParameters) {
-		        Locale current = LocaleContextHolder.getLocale();
-		        return messageSource.getMessage(messageCode, messageParameters, current);
-	}
-		 
+			 
 	private String createRedirectViewPath(String requestMapping, String action) {
 		        StringBuilder redirectViewPath = new StringBuilder();
 		        redirectViewPath.append(action);

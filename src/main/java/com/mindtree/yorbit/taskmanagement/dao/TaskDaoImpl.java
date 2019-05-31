@@ -1,22 +1,18 @@
 package com.mindtree.yorbit.taskmanagement.dao;
 
 import java.util.List;
-import java.util.Set;
-
-import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.springframework.stereotype.Component;
 
-import com.mindtree.yorbit.taskmanagement.model.Department;
 import com.mindtree.yorbit.taskmanagement.model.Employee;
 import com.mindtree.yorbit.taskmanagement.model.Project;
 import com.mindtree.yorbit.taskmanagement.model.Task;
-
+@Component
 public class TaskDaoImpl implements TaskDao{
 
 	private static final Logger logger = Logger.getLogger(TaskDaoImpl.class);
@@ -47,6 +43,7 @@ public class TaskDaoImpl implements TaskDao{
 		
 			for(Task task : taskList){
 				Hibernate.initialize(task.getAssignedResources());
+				Hibernate.initialize(task.getProject());
 			}
 		
 		return taskList;

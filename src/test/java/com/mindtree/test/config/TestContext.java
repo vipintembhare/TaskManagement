@@ -1,28 +1,33 @@
 package com.mindtree.test.config;
 
-import org.mockito.Mockito;
+import static org.mockito.Mockito.mock;
+
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
+import com.mindtree.yorbit.taskmanagement.controller.TaskController;
+import com.mindtree.yorbit.taskmanagement.dao.TaskDao;
 import com.mindtree.yorbit.taskmanagement.services.TaskService;
+import com.mindtree.yorbit.taskmanagement.services.TaskServiceImpl;
 
 @Configuration
 public class TestContext {
 
-	@Bean
-    public MessageSource messageSource() {
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
- 
-        messageSource.setBasename("i18n/messages");
-        messageSource.setUseCodeAsDefaultMessage(true);
- 
-        return messageSource;
-    }
  
     @Bean
     public TaskService todoService() {
-        return Mockito.mock(TaskService.class);
+        return mock(TaskServiceImpl.class);
+    }
+    
+    @Bean
+    public TaskController taskController() {
+    	return new TaskController();
+    }
+    
+    @Bean
+    public TaskDao taskDao() {
+    	return mock(TaskDao.class);
     }
 }
